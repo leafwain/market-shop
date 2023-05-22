@@ -8,13 +8,13 @@ const App = () => {
     <>
       <Header /> 
       <Routes>
-          <Route path="https://leafwain.github.io/market-shop/" element={<AllProducts />}/>
-          <Route path="https://leafwain.github.io/market-shop/smartphones" element={<Smartphones />}/>
-          <Route path="https://leafwain.github.io/market-shop/furniture" element={<Furniture />}/>
-          <Route path="https://leafwain.github.io/market-shop/laptops" element={<Laptops />}/>
-          <Route path="https://leafwain.github.io/market-shop/home-decoration" element={<HomeDecoration />}/>
-          <Route path="https://leafwain.github.io/market-shop/groceries" element={<Groceries />}/>
-          <Route path="https://leafwain.github.io/market-shop/cart" element={<Cart />}/>
+          <Route path="/" element={<AllProducts />}/>
+          <Route path="/smartphones" element={<Smartphones />}/>
+          <Route path="/furniture" element={<Furniture />}/>
+          <Route path="/laptops" element={<Laptops />}/>
+          <Route path="/home-decoration" element={<HomeDecoration />}/>
+          <Route path="/groceries" element={<Groceries />}/>
+          <Route path="/cart" element={<Cart />}/>
       </Routes>           
     </>
   );

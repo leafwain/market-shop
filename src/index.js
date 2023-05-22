@@ -3,17 +3,17 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './components/app/';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from './components/store/configureStore';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <Provider store={store}>
-        <BrowserRouter>
+    <HashRouter>
+        <Provider store={store}>
             <App />
-        </BrowserRouter>
-    </Provider>
+        </Provider>
+    </HashRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function

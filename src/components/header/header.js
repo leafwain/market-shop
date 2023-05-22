@@ -43,12 +43,12 @@ const Header = () => {
                         <div className="burger category">
                             <i className="burger-icon fa-solid fa-bars" onClick={(e) => burgerShow(e)}></i>
                         </div>
-                        <NavLink to="https://leafwain.github.io/market-shop/"><h1 className="category">Все товары</h1></NavLink>
-                        <NavLink to="https://leafwain.github.io/market-shop/smartphones"><h1 className="category">Смартфоны</h1></NavLink>
-                        <NavLink to="https://leafwain.github.io/market-shop/laptops"><h1 className="category">Ноутбуки</h1></NavLink>
-                        <NavLink to="https://leafwain.github.io/market-shop/home-decoration"><h1 className="category">Украшение дома</h1></NavLink>
-                        <NavLink to="https://leafwain.github.io/market-shop/furniture"><h1 className="category">Мебель</h1></NavLink>
-                        <NavLink to="https://leafwain.github.io/market-shop/groceries"><h1 className="category">Продукты</h1></NavLink>
+                        <NavLink to="/"><h1 className="category">Все товары</h1></NavLink>
+                        <NavLink to="/smartphones"><h1 className="category">Смартфоны</h1></NavLink>
+                        <NavLink to="/laptops"><h1 className="category">Ноутбуки</h1></NavLink>
+                        <NavLink to="/home-decoration"><h1 className="category">Украшение дома</h1></NavLink>
+                        <NavLink to="/furniture"><h1 className="category">Мебель</h1></NavLink>
+                        <NavLink to="/groceries"><h1 className="category">Продукты</h1></NavLink>
                     </div>
                 </div>
             </div>
