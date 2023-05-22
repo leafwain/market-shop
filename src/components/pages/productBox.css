@@ -1,0 +1,139 @@
+.content-box {
+    margin-top: 10px;
+}
+
+.content {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 15px;
+}
+
+.content-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    text-align: center;
+    margin: 0 auto 10px;
+}
+
+.card-list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.card-product-info {
+    text-align: left;
+}
+
+.card-img {    
+    display: block;
+    height: 100%;
+    width: 50%;
+}
+
+.card-btn {
+    background-color: #005bff;
+    border: 1px solid #005bff;
+    padding: 10px;
+    border-radius: 10px;
+    width: 130px;
+    color: #fff;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all .2s;
+}
+
+.card-btn:hover {
+    background-color: #0050e0;
+    color: #fff;
+}
+
+.card-btn:active {
+    scale: .9;
+}
+
+.content-title {
+    font-size: 28px;
+}
+
+.in-cart {
+    background-color: transparent;
+    border: 1px solid #005bff;
+    padding: 10px;
+    border-radius: 10px;
+    width: 130px;
+    color: #005bff;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all .2s;
+}
+
+.in-cart:hover {
+    background-color: #ececec;
+    color: #005bff;
+}
+
+.cart-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 10px;
+}
+
+.clear-cart {
+    cursor: pointer;
+    font-size: 32px;
+}
+
+.clear-cart:hover {
+    opacity: .8;
+}
+
+.cart-container {
+    display: flex;
+}
+
+.cart-about {
+    width: 100%;
+    max-width: 400px;
+}
+
+.cards {
+    max-width: 922px;
+    width: 100%;
+}
+
+.block-counter {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.btn-counter {
+    padding: 0 10px;
+    font-size: 32px;
+    margin-left: 5px;
+    background-color: rgba(0,150,255,.08);
+    border: none;
+    border-radius: 8px;
+    color: #005bff;
+    cursor: pointer;
+    transition: all .2s linear;
+}
+
+.btn-counter:hover {
+    background-color: rgba(0,150,255,.12);
+    color: #0050e0;
+}
+
+.item-count {
+    margin: 0 10px;
+}
+
+@media screen and (max-width: 750px) {
+    .cart-container {
+        flex-wrap: wrap;
+    }
+}
