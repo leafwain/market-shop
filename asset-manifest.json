@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/market-shop/static/css/main.ea4132c2.css",
+    "main.css": "/market-shop/static/css/main.a58ba465.css",
     "main.js": "/market-shop/static/js/main.09aa6f8a.js",
     "static/js/787.e48769f5.chunk.js": "/market-shop/static/js/787.e48769f5.chunk.js",
     "index.html": "/market-shop/index.html",
-    "main.ea4132c2.css.map": "/market-shop/static/css/main.ea4132c2.css.map",
+    "main.a58ba465.css.map": "/market-shop/static/css/main.a58ba465.css.map",
     "main.09aa6f8a.js.map": "/market-shop/static/js/main.09aa6f8a.js.map",
     "787.e48769f5.chunk.js.map": "/market-shop/static/js/787.e48769f5.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ea4132c2.css",
+    "static/css/main.a58ba465.css",
     "static/js/main.09aa6f8a.js"
   ]
 }
