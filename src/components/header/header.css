@@ -64,10 +64,11 @@ header {
     margin-bottom: 7px;
 }
 
-.header-down {
+.header-links {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    animation: none;
 }
 
 .active {
@@ -83,22 +84,37 @@ header {
 }
 
 @media screen and (max-width: 885px) {
-    .header-down a {
+    .header-links {
         display: none;
+        transform: translateX(-220px);
+        opacity: 0;
+        transition: all .2s;
+    }
+
+    .header-links.active {
+        transform: translateX(0);
+        opacity: 1;
     }
 
     .burger {
         display: block;
     }
+    .burger-icon {
+        transform: rotate(0);
+        transition: all .2s;
+    }
+    .burger-icon.active {
+        transform: rotate(90deg);
+    }
 }
 
 @media screen and (min-width: 886px) {
-    .header-down {
+    .header-links {
+        display: flex !important;
         flex-direction: row !important;
     }
 
-    .header-down a {
-        display: block !important;
+    .header-links a {
         border-bottom: none !important;
     }
 

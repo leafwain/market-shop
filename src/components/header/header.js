@@ -3,34 +3,42 @@ import { NavLink, Link } from "react-router-dom";
 import "./header.css";
 
 const Header = () => {
-    const [headerState, setHeaderState] = useState(false);
-    const headerDown = useRef();
+    const [menuActive, setMenuActive] = useState(false);
+    const headerLinks = useRef();
 
     useEffect(() => {
         document.addEventListener("click", (e) => {
             if (!e.target.classList.contains("burger-icon")) {
-                [...headerDown.current.children].slice(1).forEach(el => { el.style.display = "none"; el.style.borderBottom = "none" });
-                headerDown.current.style.flexDirection = "row";
-                document.querySelector(".burger-icon").classList.replace("fa-xmark", "fa-bars");
-                setHeaderState(false);
+                headerLinks.current.style.display = "none";
+                [...headerLinks.current.children].forEach(el => { el.style.borderBottom = "none" });
+                headerLinks.current.style.flexDirection = "row";
+                
+                setMenuActive(false);
             }
         })
     }, [])
 
     const burgerShow = () => {
-        if (!headerState) {
-            [...headerDown.current.children].slice(1).forEach(el => { el.style.display = "block"; el.style.borderBottom = "1px solid black" });
-            headerDown.current.style.flexDirection = "column";
-            document.querySelector(".burger-icon").classList.replace("fa-bars", "fa-xmark");
-            setHeaderState(true);
+        if (!menuActive) {
+            headerLinks.current.style.display = "flex";
+            setTimeout(() => {
+                [...headerLinks.current.children].forEach(el => { el.style.borderBottom = "1px solid black" });
+                headerLinks.current.style.flexDirection = "column";
+
+                setMenuActive(true);
+            },25);
+            
         } else {
-            [...headerDown.current.children].slice(1).forEach(el => { el.style.display = "none"; el.style.borderBottom = "none" });
-            headerDown.current.style.flexDirection = "row";
-            document.querySelector(".burger-icon").classList.replace("fa-xmark", "fa-bars");
-            setHeaderState(false);
+            setTimeout(() => {
+                headerLinks.current.style.display = "none";
+                [...headerLinks.current.children].forEach(el => { el.style.borderBottom = "none" });
+                headerLinks.current.style.flexDirection = "row";
+            }, 200);
+                     
+            setMenuActive(false);
         }        
     };
-    
+
     return (
         <header>
             <div className="container">
@@ -39,16 +47,19 @@ const Header = () => {
                         <Link to="/"><h1 className="logo">Market Shop</h1></Link>
                         <Link to="/cart"><h1 className="category cart"><span className="cart-text">Корзина</span><span className="cart-length"></span><i className="fa-solid fa-cart-shopping"></i></h1></Link>
                     </div>
-                    <div className="header-down" ref={headerDown}>
+                    <div className="header-down">
                         <div className="burger category">
-                            <i className="burger-icon fa-solid fa-bars" onClick={(e) => burgerShow(e)}></i>
+                            <i className={menuActive ? "burger-icon active fa-solid fa-xmark" : "burger-icon fa-solid fa-bars"} onClick={(e) => burgerShow(e)}></i>
                         </div>
-                        <NavLink to="/"><h1 className="category">Все товары</h1></NavLink>
-                        <NavLink to="/smartphones"><h1 className="category">Смартфоны</h1></NavLink>
-                        <NavLink to="/laptops"><h1 className="category">Ноутбуки</h1></NavLink>
-                        <NavLink to="/home-decoration"><h1 className="category">Украшение дома</h1></NavLink>
-                        <NavLink to="/furniture"><h1 className="category">Мебель</h1></NavLink>
-                        <NavLink to="/groceries"><h1 className="category">Продукты</h1></NavLink>
+                        <div className={menuActive ? "header-links active" : "header-links"} ref={headerLinks}>
+                            <NavLink to="/"><h1 className="category">Все товары</h1></NavLink>
+                            <NavLink to="/smartphones"><h1 className="category">Смартфоны</h1></NavLink>
+                            <NavLink to="/laptops"><h1 className="category">Ноутбуки</h1></NavLink>
+                            <NavLink to="/home-decoration"><h1 className="category">Украшение дома</h1></NavLink>
+                            <NavLink to="/furniture"><h1 className="category">Мебель</h1></NavLink>
+                            <NavLink to="/groceries"><h1 className="category">Продукты</h1></NavLink>
+                        </div>
+                        
                     </div>
                 </div>
             </div>
