@@ -42,6 +42,7 @@ const Cart = () => {
                     <div className="card-product-info">
                         <p className="card-title">{item.title}</p>
                         <p className="card-price">{item.price}$</p>
+                        <span>Рейтинг: {item.rating}</span>
                     </div>
                     <div className="card-btn" onClick={() => deleteItems(item.id)}>Удалить из корзины</div>
                     <div className="block-counter">

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setData } from "../actions/dataAction";
 import { setCart, deleteItemCart } from "../actions/cartAction";
 import { useNavigate } from "react-router-dom";
+import Sorting from '../sorting/';
 import Spinner from "../spinner";
 import "./productBox.css";
 
@@ -12,6 +13,7 @@ const Products = ({ name, url }) => {
 
     const data = useSelector(store => store.data.data);
     const cart = useSelector(store => store.cart.cartData);
+    const sortValue = useSelector(store => store.sortData.value);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -60,7 +62,18 @@ const Products = ({ name, url }) => {
     const errorMessage = error ? <span style={{ color: "red", fontSize: "30px" }}>Ошибка сервера</span> : null;
     const spinner = loading ? <Spinner /> : null;
 
-    const box = data.map(item => {
+    const sortedData = () => {
+        switch (sortValue) {
+            case "popular":
+                return [...data].sort((prev, cur) => prev.rating < cur.rating ? 1 : -1);
+            case "cheaper":
+                return [...data].sort((prev, cur) => prev.price > cur.price ? 1 : -1);
+            case "expensive":
+                return [...data].sort((prev, cur) => prev.price < cur.price ? 1 : -1);
+        }
+    };
+
+    const box = sortedData().map(item => {
         let status = cart.filter(x => x.id === item.id).length > 0;
         let classes = status ? "card-btn in-cart" : "card-btn";
 
@@ -71,16 +84,18 @@ const Products = ({ name, url }) => {
                     <div className="card-product-info">
                         <p className="card-title">{item.title}</p>
                         <p className="card-price">{item.price}$</p>
+                        <span>Рейтинг: {item.rating}</span>
                     </div>
                     <>
-                        {classes.includes("in-cart") ?
+                        {status ?
                             <div className="block-counter">
                                 <button className="btn-counter" onClick={() => deleteItem(cart.findIndex(x => x.id === item.id))}><i className="fa-solid fa-minus fa-2xs"></i></button>
                                 <span className="item-count">{cart.filter(x => x.id === item.id).length} шт.</span>
                                 <button className="btn-counter" onClick={() => dispatch(setCart(item))}><i className="fa-solid fa-plus fa-2xs"></i></button>
                             </div>
                             :
-                            null}
+                            null
+                        }
                         <div className={classes} onClick={() => addToCart(item)}>{status ? "В корзине" : "Купить"}</div>
                     </>
                 </div>
@@ -92,6 +107,7 @@ const Products = ({ name, url }) => {
         <div className="content-box">
             <div className="container">
                 <p className="content-title">{name}</p>
+                {(!spinner && !errorMessage) ? <Sorting /> : null}
                 <div className="content">
                     {spinner}
                     {errorMessage}
