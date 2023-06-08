@@ -1,9 +1,3 @@
-export function getData() {
-    return {
-        type: "GET_DATA"
-    }
-}
-
 export function setData(data) {
     return {
         type: "SET_DATA",

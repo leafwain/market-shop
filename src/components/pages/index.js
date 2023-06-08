@@ -5,6 +5,7 @@ import Groceries from "./groceries";
 import Laptops from "./laptops";
 import HomeDecoration from "./homeDecoration";
 import Cart from "./cart";
+import ProductDetails from "./productDetails";
 
 export {
     AllProducts,
@@ -13,5 +14,6 @@ export {
     Groceries,
     Laptops,
     HomeDecoration,
-    Cart
+    Cart,
+    ProductDetails
 }

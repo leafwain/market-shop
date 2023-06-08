@@ -6,8 +6,6 @@ export function dataReducer(state = initialState, action) {
     switch (action.type) {
         case "SET_DATA":
             return { ...state, data: action.payload };
-        case "GET_DATA":
-            return state
         case "SET_STATUS":
             return {
                 ...state,

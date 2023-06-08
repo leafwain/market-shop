@@ -1,9 +1,11 @@
 import { useRef, useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { NavLink, Link } from "react-router-dom";
 import "./header.css";
 
 const Header = () => {
     const [menuActive, setMenuActive] = useState(false);
+    const cart = useSelector(store => store.cart.cartData);
     const headerLinks = useRef();
 
     useEffect(() => {
@@ -17,6 +19,16 @@ const Header = () => {
             }
         })
     }, [])
+
+    useEffect(() => {
+        if (cart.length === 0) {
+            document.querySelector(".cart-length").style.display = "none";
+        } else {
+            document.querySelector(".cart-length").style.display = "flex";
+            document.querySelector(".cart-length").textContent = cart.length;
+        }
+
+    }, [cart])
 
     const burgerShow = () => {
         if (!menuActive) {

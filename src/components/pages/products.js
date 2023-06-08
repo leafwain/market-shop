@@ -5,7 +5,7 @@ import { setCart, deleteItemCart } from "../actions/cartAction";
 import { useNavigate } from "react-router-dom";
 import Sorting from '../sorting/';
 import Spinner from "../spinner";
-import "./productBox.css";
+import "./products.css";
 
 const Products = ({ name, url }) => {
     const [error, setError] = useState(false);
@@ -21,16 +21,6 @@ const Products = ({ name, url }) => {
     useEffect(() => {
         getAllProducts();
     }, [])
-
-    useEffect(() => {
-        if (cart.length === 0) {
-            document.querySelector(".cart-length").style.display = "none";
-        } else {
-            document.querySelector(".cart-length").style.display = "flex";
-            document.querySelector(".cart-length").textContent = cart.length;
-        }
-
-    }, [cart])
 
     const getAllProducts = async () => {
         try {
@@ -70,8 +60,14 @@ const Products = ({ name, url }) => {
                 return [...data].sort((prev, cur) => prev.price > cur.price ? 1 : -1);
             case "expensive":
                 return [...data].sort((prev, cur) => prev.price < cur.price ? 1 : -1);
+            default:
+                return data;
         }
     };
+
+    const handleDirect = (item) => {
+        navigate(`/products/${item.id}`);
+    }
 
     const box = sortedData().map(item => {
         let status = cart.filter(x => x.id === item.id).length > 0;
@@ -79,9 +75,12 @@ const Products = ({ name, url }) => {
 
         return (
             <div key={item.id + item.title} className="content-card" >
-                <img className="card-img" alt="" src={item.images[0]}></img>
+                <div className="img-wrapper" onClick={() => handleDirect(item)}>
+                    <img className="card-img" alt="" src={item.images[0]}></img>  
+                    <div className="overlay"></div>
+                </div>              
                 <div className="card-list">
-                    <div className="card-product-info">
+                    <div className="card-product-info" onClick={() => handleDirect(item)}>
                         <p className="card-title">{item.title}</p>
                         <p className="card-price">{item.price}$</p>
                         <span>Рейтинг: {item.rating}</span>

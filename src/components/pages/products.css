@@ -5,7 +5,7 @@
 .content {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 15px;
+    gap: 20px;
 }
 
 .content-card {
@@ -25,12 +25,54 @@
 
 .card-product-info {
     text-align: left;
+    cursor: pointer;
+}
+
+.card-product-info:hover {
+    opacity: 0.7;
+}
+
+.card-price {
+    font-size: 20px;
+}
+
+.card-price span {
+    color: #707F8D;
+    font-size: 17px;
+}
+
+.img-wrapper {
+    position: relative;
+    cursor: pointer;
+    height: 100%;
+    width: 75%;
 }
 
 .card-img {    
     display: block;
     height: 100%;
-    width: 50%;
+    width: 100%;
+}
+
+.added-to-cart {
+    width: 65%;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: #1c2224;
+}
+
+.img-wrapper:hover .overlay { 
+    opacity: 0.6;
 }
 
 .card-btn {
@@ -98,7 +140,7 @@
 
 .cart-about {
     width: 100%;
-    max-width: 400px;
+    text-align: right;
 }
 
 .cart-about p, h1 {
@@ -140,5 +182,9 @@
 @media screen and (max-width: 750px) {
     .cart-container {
         flex-wrap: wrap;
+    }
+
+    .cart-about {
+        text-align: left;
     }
 }
