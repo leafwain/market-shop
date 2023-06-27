@@ -3,7 +3,7 @@ import Products from "./products";
 const Furniture = () => {
  
     return (
-       <Products name={"Мебель"} url={"/products/category/furniture"}/>        
+       <Products name={"Мебель"} url={"https://dummyjson.com/products/category/furniture"}/>        
     )
 }
 

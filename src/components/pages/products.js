@@ -5,6 +5,7 @@ import { setCart, deleteItemCart } from "../actions/cartAction";
 import { useNavigate } from "react-router-dom";
 import Sorting from '../sorting/';
 import Spinner from "../spinner";
+import { getService } from "../../services/getService";
 import "./products.css";
 
 const Products = ({ name, url }) => {
@@ -24,11 +25,7 @@ const Products = ({ name, url }) => {
 
     const getAllProducts = async () => {
         try {
-            const response = await fetch(`https://dummyjson.com${url}`);
-            if (!response.ok) {
-                throw new Error("Ошибка сервера");
-            }
-            const jsonData = await response.json();
+            const jsonData = await getService(url);
             dispatch(setData(jsonData.products));
             setLoading(false);
         } catch (error) {
@@ -47,7 +44,7 @@ const Products = ({ name, url }) => {
 
     const deleteItem = (id) => {
         dispatch(deleteItemCart(id));
-    }
+    };
 
     const errorMessage = error ? <span style={{ color: "red", fontSize: "30px" }}>Ошибка сервера</span> : null;
     const spinner = loading ? <Spinner /> : null;
@@ -67,7 +64,7 @@ const Products = ({ name, url }) => {
 
     const handleDirect = (item) => {
         navigate(`/products/${item.id}`);
-    }
+    };
 
     const box = sortedData().map(item => {
         let status = cart.filter(x => x.id === item.id).length > 0;

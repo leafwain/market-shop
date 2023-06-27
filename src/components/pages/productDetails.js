@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useMatch, useNavigate } from "react-router-dom";
 import { setCart, deleteItemCart } from "../actions/cartAction";
+import { getService } from "../../api/api";
 
-import "./productDetails.css";
+import "./productDetails.scss";
 
 const ProductDetails = () => {
     const [allProductsData, setAllProductsData] = useState([]);
@@ -23,11 +24,7 @@ const ProductDetails = () => {
 
     const getAllProducts = async () => {
         try {
-            const response = await fetch(`https://dummyjson.com/products`);
-            if (!response.ok) {
-                throw new Error("Ошибка сервера");
-            }
-            const jsonData = await response.json();
+            const jsonData = await getService(`https://dummyjson.com/products`);
             setAllProductsData(jsonData.products);
             setLoading(false);
         } catch (error) {
