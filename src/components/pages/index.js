@@ -6,6 +6,7 @@ import Laptops from "./laptops";
 import HomeDecoration from "./homeDecoration";
 import Cart from "./cart";
 import ProductDetails from "./productDetails";
+import Search from "./search";
 
 export {
     AllProducts,
@@ -15,5 +16,6 @@ export {
     Laptops,
     HomeDecoration,
     Cart,
-    ProductDetails
+    ProductDetails,
+    Search
 }

@@ -2,19 +2,25 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setData } from "../actions/dataAction";
 import { setCart, deleteItemCart } from "../actions/cartAction";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useMatch } from "react-router-dom";
 import Sorting from '../sorting/';
-import Spinner from "../spinner";
-import { getService } from "../../services/getService";
-import "./products.css";
+import CircularProgress from '@mui/material/CircularProgress';
+import { getService } from "../../api/api";
+import "./products.scss";
 
-const Products = ({ name, url }) => {
+const Products = ({ name, url, searchStatus = false }) => {
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(true);
 
-    const data = useSelector(store => store.data.data);
+    let data = useSelector(store => store.data.data);
     const cart = useSelector(store => store.cart.cartData);
     const sortValue = useSelector(store => store.sortData.value);
+    const searchParams = useMatch("/search/:words")?.params.words.toLowerCase();
+
+    if (searchStatus) {
+        // data = data.filter(x => [searchParams].some(word => x.title.toLowerCase().includes(word)));
+        data = data.filter(x => x.title.toLowerCase().includes([searchParams].join(" ")));
+    }
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -26,7 +32,7 @@ const Products = ({ name, url }) => {
     const getAllProducts = async () => {
         try {
             const jsonData = await getService(url);
-            dispatch(setData(jsonData.products));
+            dispatch(setData(jsonData.products));                       
             setLoading(false);
         } catch (error) {
             setError(true);
@@ -47,7 +53,7 @@ const Products = ({ name, url }) => {
     };
 
     const errorMessage = error ? <span style={{ color: "red", fontSize: "30px" }}>Ошибка сервера</span> : null;
-    const spinner = loading ? <Spinner /> : null;
+    const spinner = loading ? <CircularProgress /> : null;
 
     const sortedData = () => {
         switch (sortValue) {

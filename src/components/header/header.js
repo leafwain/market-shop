@@ -1,12 +1,35 @@
 import { useRef, useState, useEffect } from "react";
-import { useSelector } from "react-redux";
-import { NavLink, Link } from "react-router-dom";
-import "./header.css";
+import { useSelector, useDispatch } from "react-redux";
+import { NavLink, Link, useNavigate, useLocation } from "react-router-dom";
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import IconButton from '@mui/material/IconButton';
+import SearchIcon from '@mui/icons-material/Search';
+import { styled } from "@mui/material";
+import "./header.scss";
 
-const Header = () => {
+const StyledOutlinedInput = styled(OutlinedInput)(() => ({
+    '&.MuiOutlinedInput-root': {
+        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+        borderColor: '#0050e0',
+        },
+    },
+}));
+
+const Header = () => {    
     const [menuActive, setMenuActive] = useState(false);
+    const [inputValue, setInputValue] = useState("");
+    const location = useLocation();
     const cart = useSelector(store => store.cart.cartData);
+    const navigate = useNavigate();
     const headerLinks = useRef();
+    const inputSearch = useRef();
+
+    useEffect(() => {
+        if (!location.pathname.includes("search")) {
+          setInputValue("");
+        }
+      }, [location]);
 
     useEffect(() => {
         document.addEventListener("click", (e) => {
@@ -51,13 +74,44 @@ const Header = () => {
         }        
     };
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const inputValue = inputSearch.current.firstChild.value;
+
+        if (inputValue.trim().length !== 0) {
+            navigate(`/search/${[inputValue].join("-")}`);
+        }        
+    };
+
     return (
         <header>
             <div className="container">
                 <div className="header">
                     <div className="header-up">
-                        <Link to="/"><h1 className="logo">Market Shop</h1></Link>
-                        <Link to="/cart"><h1 className="category cart"><span className="cart-text">Корзина</span><span className="cart-length"></span><i className="fa-solid fa-cart-shopping"></i></h1></Link>
+                        <div className="header-link-logo"><Link to="/"><h1 className="logo">Market Shop</h1></Link></div>
+                        <div className="header-form">
+                            <form action="#" onSubmit={(e) => handleSubmit(e)}>
+                                <StyledOutlinedInput className="header-form-input"
+                                    sx={{ flex: 1 }}
+                                    placeholder="Поиск по сайту"
+                                    ref={inputSearch}
+                                    value={inputValue}
+                                    onChange={(e) => setInputValue(e.target.value)}
+                                />
+                                <IconButton type="submit" sx={{ p: "10px" }} aria-label="search">
+                                    <SearchIcon sx={{ fontSize: "2.5rem" }} />
+                                </IconButton>
+                            </form>
+                        </div>
+                        <div className="header-link-cart">
+                            <Link to="/cart">
+                                <h1 className="category cart">
+                                    <span className="cart-text">Корзина</span>
+                                    <span className="cart-length"></span>
+                                    <ShoppingCartOutlinedIcon sx={{ fontSize: "29px" }}/>
+                                </h1>
+                            </Link>
+                        </div>
                     </div>
                     <div className="header-down">
                         <div className="burger category">
@@ -70,8 +124,7 @@ const Header = () => {
                             <NavLink to="/home-decoration"><h1 className="category">Украшение дома</h1></NavLink>
                             <NavLink to="/furniture"><h1 className="category">Мебель</h1></NavLink>
                             <NavLink to="/groceries"><h1 className="category">Продукты</h1></NavLink>
-                        </div>
-                        
+                        </div>                        
                     </div>
                 </div>
             </div>

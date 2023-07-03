@@ -1,0 +1,157 @@
+header {
+    margin-top: 10px;
+}
+
+.logo {
+    font-size: 36px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.category {
+    font-size: 36px;
+    font-weight: 300;
+    cursor: pointer;
+    transition: all .2s;
+
+    &:hover {
+        color: #0050e0;
+    }
+}
+
+.cart {
+    position: relative;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    cursor: pointer;
+    transition: all .2s;
+
+    &-text {
+        font-size: 22px;
+    }
+
+    &-length {
+        display: none;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: -9px;
+        left: 45px;
+        font-size: 15px;
+        height: 25px;
+        width: 25px;
+        background-color: red;
+        color: #fff;
+        font-weight: 400;
+        border-radius: 50%;
+    }
+}
+
+.fa-cart-shopping {
+    font-size: 21px;
+}
+
+.header {
+    form {
+        display: flex;
+    }
+
+    &-up {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 7px;
+    }
+
+    &-links {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        animation: none;
+    }
+
+    &-form {
+        width: 78%;
+    
+        &-input {
+            width: 90%;
+        }
+    }
+}
+
+.active {
+    color: #0050e0;
+}
+
+.burger {
+    display: none;
+}
+
+.fa-bars,
+.fa-xmark {
+    color: #000;
+}
+
+@media screen and (max-width: 885px) {
+    .header-links {
+        display: none;
+        transform: translateX(-220px);
+        opacity: 0;
+        transition: all .2s;
+
+        &.active {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    .burger {
+        display: block;
+
+        &-icon {
+            transform: rotate(0);
+            transition: all .2s;
+        }
+
+        &-icon.active {
+            transform: rotate(90deg);
+        }
+    }
+
+    .header {
+        &-up {
+            flex-wrap: wrap;
+        }
+
+        &-link-logo {
+            width: 50%;
+        }
+
+        &-link-cart {
+            display: flex;
+            justify-content: flex-end;
+            width: 50%;
+        }
+
+        &-form {
+            width: 100%;
+            order: 3;
+        }
+    }
+}
+
+@media screen and (min-width: 886px) {
+    .header-links {
+        display: flex !important;
+        flex-direction: row !important;
+
+        a {
+            border-bottom: none !important;
+        }
+    }
+
+    .burger {
+        display: none;
+    }
+}

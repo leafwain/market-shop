@@ -2,23 +2,27 @@
     display: flex;
     text-align: left;
     margin-top: 20px;
-}
 
-.item-details-left {
-    max-width: 720px;
-    width: 100%;
-    height: 100%;
-    margin-right: 10px;
-    margin-bottom: 15px;
-}
+    & h1 {
+        font-weight: 400;
+    }
 
-.item-details-right {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    max-width: 450px;
-    width: 100%;
+    &-left {
+        max-width: 720px;
+        width: 100%;
+        height: 100%;
+        margin-right: 10px;
+        margin-bottom: 15px;
+    }
+
+    &-right {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        max-width: 450px;
+        width: 100%;
+    }
 }
 
 .item-error {
